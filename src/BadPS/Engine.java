@@ -38,19 +38,21 @@ public class Engine {
 
     public static Color[][] makeGradient() {
         Random rand = new Random();
-        Color[][] array = new Color[1][rand.nextInt(512)];
+        Color[][] array = new Color[1][rand.nextInt(10)];
         for(int i = 0; i <array[0].length; i++){
             array[0][i] = new Color(rand.nextInt(255),25 , 25);
         }
         for (Color[] arr : array) {
-            int n = arr.length;
-            for (int i = 0; i < n - 1; i++)
-                for (int j = 0; j < n - i - 1; j++)
-                    if (arr[j].getRed() > arr[j + 1].getRed()) {
-                        Color temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
+            int length = arr.length;
+            for (int i = 1; i < length; i++) {
+                Color key = arr[i];
+                int j = i - 1;
+                while (j >= 0 && arr[j].getRed() > key.getRed()) {
+                    arr[j + 1] = arr[j];
+                    j = j - 1;
+                }
+                arr[j + 1] = key;
+            }
         }
 
         return array;
