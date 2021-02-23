@@ -77,6 +77,11 @@ public class Drawer {
             e.addLayer(l);
         }
 
+        Layer la = new Layer(e.makeGradient(), -5);
+        LayerControls lc = new LayerControls(la);
+        layersPanel.add(lc.mainpanel);
+        e.addLayer(la);
+
         canvas = new EngineCanvas(e);
         canvas.setSize(640, 640);
         frame.add(canvas, BorderLayout.CENTER);

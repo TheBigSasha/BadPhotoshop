@@ -1,5 +1,8 @@
 package BadPS;
 
+import java.awt.*;
+import java.util.Random;
+
 public class Engine {
     Layer[] layers = new Layer[0];
 
@@ -31,5 +34,25 @@ public class Engine {
                     arr[j] = arr[j+1];
                     arr[j+1] = temp;
                 }
+    }
+
+    public static Color[][] makeGradient() {
+        Random rand = new Random();
+        Color[][] array = new Color[1][rand.nextInt(512)];
+        for(int i = 0; i <array[0].length; i++){
+            array[0][i] = new Color(rand.nextInt(255),25 , 25);
+        }
+        for (Color[] arr : array) {
+            int n = arr.length;
+            for (int i = 0; i < n - 1; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j].getRed() > arr[j + 1].getRed()) {
+                        Color temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+        }
+
+        return array;
     }
 }
